@@ -25,5 +25,15 @@ RSpec.describe StringsCalculator, type: :model do
         expect(StringsCalculator.new.add("5,20")).to eq(25)
       end
     end
+
+    context "For multiple numbers" do
+      it 'returns number 9 for "1,5,3"' do
+        expect(StringsCalculator.new.add("1,5,3")).to eq(9)
+      end
+
+      it 'returns number 80 for "5,20,51,4"' do
+        expect(StringsCalculator.new.add("5,20,51,4")).to eq(80)
+      end
+    end
   end
 end
