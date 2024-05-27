@@ -6,7 +6,7 @@ RSpec.describe StringsCalculator, type: :model do
       expect(StringsCalculator.new.add("")).to eq(0)
     end
 
-    context "Single number" do
+    context "For single number" do
       it 'returns number 1 for "1"' do
         expect(StringsCalculator.new.add("1")).to eq(1)
       end
@@ -16,7 +16,7 @@ RSpec.describe StringsCalculator, type: :model do
       end
     end
 
-    context "Two numbers" do
+    context "For two numbers" do
       it 'returns number 6 for "1,5"' do
         expect(StringsCalculator.new.add("1,5")).to eq(6)
       end
@@ -34,6 +34,14 @@ RSpec.describe StringsCalculator, type: :model do
       it 'returns number 80 for "5,20,51,4"' do
         expect(StringsCalculator.new.add("5,20,51,4")).to eq(80)
       end
+    end
+
+    it 'handles new lines between numbers' do
+      expect(StringsCalculator.new.add("1\n2,3")).to eq(6)
+    end
+
+    it 'supports different delimiters' do
+      expect(StringsCalculator.new.add("//;\n1;2")).to eq(3)
     end
   end
 end
